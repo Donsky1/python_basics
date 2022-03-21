@@ -44,6 +44,7 @@ members_dict = {'Алекса́ндр Серге́евич Пу́шкин': '26.
                 'Иван Александрович Гончаров': '18.06.1812',
                 'Алекса́ндр Серге́евич Грибое́дов': '15.01.1795'}
 
+count = 1
 while True:
     winners_list = random.sample(list(members_dict), 5)
     true_count = 0
@@ -51,16 +52,17 @@ while True:
         data_text = ''
         data_propis = members_dict[people].split('.')
         data_text = d_ls[int(data_propis[0]) - 1] + ' ' + m_ls[int(data_propis[1]) - 1] + ' ' + data_propis[2] + ' года'
-        data = input('Угадайте дату рождения первого победителя: ')
+        data = input(f'Угадайте дату рождения {count} победителя {people}: ')
         if data != members_dict[people]:
             print(f'Вы ввели неверную дату {data}, а верная следующая {members_dict[people]}: '
                   f'{data_text}')
         else:
-            print(f'Вы ввели верную дату {data})')
+            print(f'Вы ввели верную дату {data}')
             true_count += 1
 
     print('-' * 30)
-    print(f'Кол-во верных ответов: {true_count}, {round(true_count / 5 * 100, 2)}%')
+    print(f'Кол-во неверных ответов {5 - true_count}, верных ответов: {true_count}, {round(true_count / 5 * 100, 2)}%')
+    count += 1
 
     # предложение сыграть снова
     if input('Для продолжения нажмите любую клавишу (для выхода q) ').lower() == 'q':
